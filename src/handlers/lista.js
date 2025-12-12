@@ -1,20 +1,14 @@
-import {
+const {
   errorHandler,
   successResponse,
-} from "../middlewares/errorHandler.middleware.js";
-import storageService from "../services/storage.service.js";
-import discordService from "../services/discord.service.js";
-import { normalizarIngrediente } from "../utils/normalizer.js";
+} = require("../middlewares/errorHandler.middleware.js");
+const storageService = require("../services/storage.service.js");
+const discordService = require("../services/discord.service.js");
+const { normalizarIngrediente } = require("../utils/normalizer.js");
 
-const { carregarLista, limparLista, salvarLista } = {
-  carregarLista: () => storageService.carregarLista(),
-  limparLista: () => storageService.limparLista(),
-  salvarLista: (lista) => storageService.salvarLista(lista),
-};
-
-export async function obterLista(event) {
+async function obterLista(event) {
   try {
-    const lista = await carregarLista();
+    const lista = await storageService.carregarLista();
 
     return successResponse({
       totalItens: Object.keys(lista.itens).length,
@@ -33,9 +27,9 @@ export async function obterLista(event) {
   }
 }
 
-export async function limparListaHandler(event) {
+async function limparListaHandler(event) {
   try {
-    await limparLista();
+    await storageService.limparLista();
     await discordService.enviarMensagem("🗑️ Lista de compras foi limpa!");
 
     return successResponse({
@@ -46,7 +40,7 @@ export async function limparListaHandler(event) {
   }
 }
 
-export async function removerIngrediente(event) {
+async function removerIngrediente(event) {
   try {
     const { ingrediente } = JSON.parse(event.body || "{}");
 
@@ -57,11 +51,11 @@ export async function removerIngrediente(event) {
       };
     }
 
-    const lista = await carregarLista();
+    const lista = await storageService.carregarLista();
     const ingredienteNormalizado = normalizarIngrediente(ingrediente);
 
     if (lista.removerIngrediente(ingredienteNormalizado)) {
-      await salvarLista(lista);
+      await storageService.salvarLista(lista);
 
       return successResponse({
         message: `Ingrediente "${ingredienteNormalizado}" removido com sucesso`,
@@ -78,3 +72,5 @@ export async function removerIngrediente(event) {
     return errorHandler(err);
   }
 }
+
+module.exports = { obterLista, limparListaHandler, removerIngrediente };

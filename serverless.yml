@@ -20,35 +20,35 @@ provider:
 
 functions:
   health:
-    handler: src/handlers/health.handler.handler
+    handler: src/handlers/health.handler
     events:
       - http:
           path: /
           method: get
 
   webhook:
-    handler: src/handlers/webhook.handler.handler
+    handler: src/handlers/webhook.handler
     events:
       - http:
           path: /webhook
           method: post
 
   obterLista:
-    handler: src/handlers/lista.handler.obterLista
+    handler: src/handlers/lista.obterLista
     events:
       - http:
           path: /lista
           method: get
 
   limparLista:
-    handler: src/handlers/lista.handler.limparLista
+    handler: src/handlers/lista.limparListaHandler
     events:
       - http:
           path: /lista
           method: delete
 
   removerIngrediente:
-    handler: src/handlers/lista.handler.removerIngrediente
+    handler: src/handlers/lista.removerIngrediente
     events:
       - http:
           path: /lista/ingrediente

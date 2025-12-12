@@ -1,4 +1,4 @@
-import { normalizarIngredientes } from "../utils/normalizer.js";
+const { normalizarIngredientes } = require("../utils/normalizer.js");
 
 class NotionService {
   parseReceita(notionPayload) {
@@ -26,4 +26,4 @@ class NotionService {
   }
 }
 
-export default new NotionService();
+module.exports = new NotionService();

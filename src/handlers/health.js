@@ -1,9 +1,13 @@
-import { successResponse } from "../middlewares/errorHandler.middleware.js";
+const {
+  successResponse,
+} = require("../middlewares/errorHandler.middleware.js");
 
-export async function handler(event) {
+async function handler(event) {
   return successResponse({
     message: "Lambda funcionando",
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
   });
 }
+
+module.exports = { handler };

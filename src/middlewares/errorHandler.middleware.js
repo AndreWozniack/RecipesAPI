@@ -1,6 +1,6 @@
-import { NODE_ENV } from "../config/env.js";
+const { NODE_ENV } = require("../config/env.js");
 
-export function errorHandler(error) {
+function errorHandler(error) {
   console.error("Error:", error);
 
   const isDevelopment = NODE_ENV === "development";
@@ -14,7 +14,7 @@ export function errorHandler(error) {
   };
 }
 
-export function successResponse(data, statusCode = 200) {
+function successResponse(data, statusCode = 200) {
   return {
     statusCode,
     headers: {
@@ -23,3 +23,8 @@ export function successResponse(data, statusCode = 200) {
     body: JSON.stringify(data),
   };
 }
+
+module.exports = {
+  errorHandler,
+  successResponse,
+};

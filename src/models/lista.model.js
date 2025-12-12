@@ -74,4 +74,4 @@ class Lista {
   }
 }
 
-export default Lista;
+module.exports = Lista;

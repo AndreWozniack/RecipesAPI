@@ -1,6 +1,6 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
-export function isValidNotionPayload(payload) {
+function isValidNotionPayload(payload) {
   return (
     payload &&
     payload.data &&
@@ -9,7 +9,7 @@ export function isValidNotionPayload(payload) {
   );
 }
 
-export function verifySignature(body, signature, secret) {
+function verifySignature(body, signature, secret) {
   if (!secret || !signature) return false;
 
   try {
@@ -20,3 +20,8 @@ export function verifySignature(body, signature, secret) {
     return false;
   }
 }
+
+module.exports = {
+  isValidNotionPayload,
+  verifySignature,
+};

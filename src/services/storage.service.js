@@ -1,6 +1,6 @@
-import AWS from "aws-sdk";
-import { S3_BUCKET, S3_KEY } from "../config/env.js";
-import Lista from "../models/lista.model.js";
+const AWS = require("aws-sdk");
+const { S3_BUCKET, S3_KEY } = require("../config/env.js");
+const Lista = require("../models/lista.model.js");
 
 const s3 = new AWS.S3();
 
@@ -53,4 +53,4 @@ class StorageService {
   }
 }
 
-export default new StorageService();
+module.exports = new StorageService();

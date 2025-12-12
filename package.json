@@ -1,12 +1,11 @@
 {
-  "type": "module",
   "name": "recipesapi",
   "version": "1.0.0",
-  "main": "server-local-esm.js",
+  "main": "server-local.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server-local-esm.js",
-    "dev": "nodemon server-local-esm.js"
+    "start": "nodemon server-local.js",
+    "dev": "nodemon server-local.js"
   },
   "author": "",
   "license": "ISC",

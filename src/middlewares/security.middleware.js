@@ -1,5 +1,5 @@
-import { WEBHOOK_SECRET, MAX_PAYLOAD_SIZE } from "../config/env.js";
-import { verifySignature } from "../utils/validator.js";
+const { WEBHOOK_SECRET, MAX_PAYLOAD_SIZE } = require("../config/env.js");
+const { verifySignature } = require("../utils/validator.js");
 
 function securityMiddleware(event) {
   // Verificar método HTTP
@@ -46,4 +46,4 @@ function securityMiddleware(event) {
   return { valid: true };
 }
 
-export default securityMiddleware;
+module.exports = securityMiddleware;

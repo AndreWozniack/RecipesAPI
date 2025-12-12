@@ -1,5 +1,5 @@
-import axios from "axios";
-import { WEBHOOK_URL, DISCORD_TIMEOUT } from "../config/env.js";
+const axios = require("axios");
+const { WEBHOOK_URL, DISCORD_TIMEOUT } = require("../config/env.js");
 
 class DiscordService {
   async enviarReceita(receita, lista) {
@@ -91,4 +91,4 @@ class DiscordService {
   }
 }
 
-export default new DiscordService();
+module.exports = new DiscordService();

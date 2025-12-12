@@ -1,14 +1,14 @@
-import securityMiddleware from "../middlewares/security.middleware.js";
-import {
+const securityMiddleware = require("../middlewares/security.middleware.js");
+const {
   errorHandler,
   successResponse,
-} from "../middlewares/errorHandler.middleware.js";
-import { isValidNotionPayload } from "../utils/validator.js";
-import storageService from "../services/storage.service.js";
-import notionService from "../services/notion.service.js";
-import discordService from "../services/discord.service.js";
+} = require("../middlewares/errorHandler.middleware.js");
+const { isValidNotionPayload } = require("../utils/validator.js");
+const storageService = require("../services/storage.service.js");
+const notionService = require("../services/notion.service.js");
+const discordService = require("../services/discord.service.js");
 
-export async function handler(event) {
+async function handler(event) {
   try {
     // 1. Validação de segurança
     const securityCheck = securityMiddleware(event);
@@ -66,3 +66,5 @@ export async function handler(event) {
     return errorHandler(err);
   }
 }
+
+module.exports = { handler };
